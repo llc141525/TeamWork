@@ -10,6 +10,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
     /*
      * 用于配置非安全相关的 webMVC 配置.如拦截器、视图解析、静态资源映射等
      * */
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry

@@ -7,6 +7,7 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Objects;
 
 @Getter
@@ -65,6 +66,7 @@ public class User {
         comments.add(comment);
         comment.setUser(this);
     }
+
 
 
     @Override

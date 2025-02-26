@@ -1,6 +1,7 @@
 package org.example.teamwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -33,6 +34,7 @@ public class Comment {
     @ToString.Exclude
     @JsonIgnore
     private Article article;
+
 
     @Override
     public final boolean equals(Object o) {

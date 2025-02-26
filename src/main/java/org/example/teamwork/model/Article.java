@@ -1,6 +1,7 @@
 package org.example.teamwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -64,6 +65,7 @@ public class Article {
         this.comments.remove(comment);
         comment.setArticle(null);
     }
+
 
     @Override
     public final boolean equals(Object o) {
