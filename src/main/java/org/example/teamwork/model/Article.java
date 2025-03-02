@@ -1,7 +1,6 @@
 package org.example.teamwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -35,7 +34,7 @@ public class Article {
     private String content;
 
     // 文章的分类
-    private String classes;
+    private String category;
 
     //文章的观看数量
     private Integer watchNum;

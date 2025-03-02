@@ -7,7 +7,6 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Objects;
 
 @Getter
@@ -16,6 +15,9 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "User.findById", query = "select u from User u where u.id = :id")
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,7 +68,6 @@ public class User {
         comments.add(comment);
         comment.setUser(this);
     }
-
 
 
     @Override
