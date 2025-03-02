@@ -1,12 +1,12 @@
 package org.example.teamwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @ToString
@@ -34,8 +34,8 @@ public class Article {
     //文章的文本内容
     private String content;
 
-    // 文章的分类
-    private String classes;
+    // 文章的分类, 多个分类使用逗号分隔
+    private String category;
 
     //文章的观看数量
     private Integer watchNum;
@@ -45,7 +45,7 @@ public class Article {
             mappedBy = "article",
             orphanRemoval = true) // 孤儿删除
     @ToString.Exclude
-    private ArrayList<Comment> comments = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
     //一对一, 一篇文章只有一个作者.
     @ManyToOne(fetch = FetchType.LAZY)

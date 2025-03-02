@@ -1,0 +1,7 @@
+declare module "@kangc/v-md-editor"
+declare module "@kangc/v-md-editor/lib/theme/github.js"
+declare module "@kangc/v-md-editor/lib/plugins/line-number"
+declare module "@kangc/v-md-editor/lib/preview"
+declare module "highlight.js/lib/core"
+declare module "highlight.js/lib/languages/python"
+declare module "@kangc/v-md-editor/lib/plugins/line-number/index"

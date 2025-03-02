@@ -7,5 +7,18 @@
     {
       "path": "./tsconfig.app.json"
     }
+  ],
+  "compilerOptions": {
+    "types": [
+      "node"
+    ],
+    // 添加这行
+    "module": "ESNext",
+    // 确保使用 ESM
+    "moduleResolution": "NodeNext"
+    // 推荐配置
+  },
+  "include": [
+    "src/**/*.d.ts"
   ]
 }

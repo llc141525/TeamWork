@@ -1,0 +1,14 @@
+openapi: 3.1.0
+info:
+  title: 个人博客网站接口测试
+  description: 个人博客网站接口测试
+  version: 1.0.0
+  contact:
+    name: 雷乐涔和叶江涛
+    url: https://github.com/llc141525
+    email: 3095171781@qq.com
+
+servers:
+
+paths:
+
