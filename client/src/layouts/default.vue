@@ -1,4 +1,5 @@
 <template>
+  <Navigation/>
   <v-main>
     <router-view/>
   </v-main>
@@ -8,4 +9,5 @@
 
 <script lang="ts" setup>
 //
+import Navigation from "@/components/Navigation.vue";
 </script>

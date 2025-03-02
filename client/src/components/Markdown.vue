@@ -8,7 +8,6 @@
       @upload-image="uploadImage"
     >
 
-
     </v-md-editor>
   </v-container>
 
@@ -24,14 +23,18 @@ function uploadImage(event: Event, insertImage: (url: string) => void, file: Fil
   //   "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
   // )
 
-  // 插入图片然后上传到服务器
+  //TODO 插入图片然后上传到服务器
 
 }
 
-
 const text = ref("")
-watch(text, () => {
-  console.log(text.value)
+const props = defineProps<{ submit: boolean }>()
+watchEffect(() => {
+  if (props.submit) {
+    console.log("props.submit", props.submit)
+
+    //TODO 把文章发送到服务器
+  }
 })
 
 </script>
