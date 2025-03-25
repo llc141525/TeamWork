@@ -1,4 +1,4 @@
-package org.example.teamwork.config;
+package org.example.teamwork.Util.config;
 
 
 import org.springframework.context.annotation.Bean;

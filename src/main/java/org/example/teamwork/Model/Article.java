@@ -1,4 +1,4 @@
-package org.example.teamwork.model;
+package org.example.teamwork.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
