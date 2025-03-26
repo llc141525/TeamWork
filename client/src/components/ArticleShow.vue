@@ -2,19 +2,19 @@
 
   <v-hover v-slot="{ isHovering, props:hoverProps }">
     <v-card
-      :elevation="isHovering ? 10 : 2"
-      class="position-relative"
-      href="localhost:8080/articles/1"
-      max-height="450"
-      max-width="350"
-      rounded="lg"
-      style="z-index: 1"
-      v-bind="hoverProps"
-      @click="() => {router.push('/articles/1')}"
+        :elevation="isHovering ? 10 : 2"
+        class="position-relative"
+        href="localhost:8080/articles/1"
+        max-height="450"
+        max-width="350"
+        rounded="lg"
+        style="z-index: 1"
+        v-bind="hoverProps"
+        @click="() => {router.push('/articles/1')}"
     >
       <v-avatar class="position-absolute" style="top: 200px; left: 20px; z-index: 4">
         <v-img
-          src="https://cdn.vuetifyjs.com/images/john.jpg"
+            src="https://cdn.vuetifyjs.com/images/john.jpg"
         ></v-img>
       </v-avatar>
       <v-img :class="{ 'hover-zoom': isHovering }"

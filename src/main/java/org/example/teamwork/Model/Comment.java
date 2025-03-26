@@ -1,7 +1,6 @@
-package org.example.teamwork.model;
+package org.example.teamwork.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -21,6 +20,7 @@ public class Comment {
 
     // 评论内容
     private String content;
+
 
     // 一对一, 一个评论只有一个作者
     @ManyToOne(fetch = FetchType.LAZY)
