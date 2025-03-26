@@ -4,8 +4,9 @@ package org.example.teamwork.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.example.teamwork.DTO.ArticleDetailDto;
-import org.example.teamwork.DTO.ArticleShowDto;
+import org.example.teamwork.DTO.request.ArticleDetailRequest;
+import org.example.teamwork.DTO.request.ArticleShowDto;
+import org.example.teamwork.Mapper.ArticleMapper;
 import org.example.teamwork.Model.Article;
 import org.example.teamwork.Util.response.ApiResponse;
 import org.example.teamwork.repository.ArticleRepository;
@@ -23,14 +24,14 @@ import java.util.List;
 public class ArticleController {
     private final ArticleRepository articleRepository;
     private final ArticleService articleService;
-
+    private final ArticleMapper articleMapper;
 
     @Operation(summary = "获取文章首页", description = "获取文章首页")
     @GetMapping("/show")
     public ApiResponse<List<ArticleShowDto>> getArticleDetail() {
         List<ArticleShowDto> articleShowDto = new ArrayList<>();
         articleRepository.findAll().forEach(article -> {
-            ArticleShowDto articleDetailDto = new ArticleShowDto();
+            ArticleShowDto articleDetailDto = articleMapper.toShowDto(article);
             BeanUtils.copyProperties(article, articleDetailDto);
             articleShowDto.add(articleDetailDto);
         });
@@ -39,21 +40,20 @@ public class ArticleController {
 
     @Operation(summary = "根据 id 获取文章")
     @GetMapping("/detail/{id}")
-    public ApiResponse<ArticleDetailDto> getArticleDetailById(@PathVariable Long id) {
-        ArticleDetailDto articleDetailDto = new ArticleDetailDto();
+    public ApiResponse<ArticleDetailRequest> getArticleDetailById(@PathVariable Long id) {
         Article article = articleRepository.findById(id).orElse(null);
+        ArticleDetailRequest articleDetailRequest = articleMapper.toDetailDto(article);
         if (article == null) {
             return ApiResponse.error(404, "文章不存在");
         } else {
-            return ApiResponse.success(articleDetailDto);
+            return ApiResponse.success(articleDetailRequest);
         }
-
     }
 
     @Operation(summary = "新建一个文章", description = "新建一个文章")
     @PostMapping("/create")
-    public ApiResponse<String> createArticle(@RequestBody ArticleDetailDto articleDetailDto) {
-        articleService.saveArticle(articleDetailDto);
+    public ApiResponse<String> createArticle(@RequestBody ArticleDetailRequest articleDetailRequest) {
+        articleService.saveArticle(articleDetailRequest);
         return ApiResponse.success("文章创建成功");
     }
 
@@ -70,12 +70,12 @@ public class ArticleController {
 
     @Operation(summary = "更新一个文章", description = "更新一个文章")
     @PutMapping("/update/{id}")
-    public ApiResponse<String> updateArticle(@RequestParam Long id, @RequestBody ArticleDetailDto articleDetailDto) {
+    public ApiResponse<String> updateArticle(@RequestParam Long id, @RequestBody ArticleDetailRequest articleDetailRequest) {
         Article article = articleRepository.findById(id).orElse(null);
         if (article == null) {
             return ApiResponse.error(404, "文章不存在");
         } else {
-            BeanUtils.copyProperties(articleDetailDto, article, "id");
+            BeanUtils.copyProperties(articleDetailRequest, article, "id");
             try {
                 articleRepository.save(article);
                 return ApiResponse.success("更新成功");

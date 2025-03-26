@@ -2,7 +2,6 @@ package org.example.teamwork.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -30,20 +29,15 @@ public class Article {
     private Long id;
 
     // 文章的标题
-    @Column(unique = true)
-    @NotNull(message = "文章标题不能为空")
     private String title;
 
     //文章的文本内容
-    @NotNull(message = "文章内容不能为空")
     private String content;
 
     // 文章的分类, 多个分类使用逗号分隔
-    @NotNull(message = "文章分类不能为空")
     private String category;
 
     //文章的观看数量
-    @NotNull(message = "文章观看数量不能为空")
     private Integer watchNum;
 
     //一对多, 一篇文章对应多个评论

@@ -1,4 +1,4 @@
-package org.example.teamwork.DTO;
+package org.example.teamwork.DTO.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -16,8 +16,7 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class ArticleShowDto implements Serializable {
-    @PositiveOrZero
-    Long id;
+
 
     String title;
 
@@ -26,20 +25,11 @@ public class ArticleShowDto implements Serializable {
     @PositiveOrZero
     Integer page;
 
-
     @PositiveOrZero
     Integer watchNum;
 
     User user;
 
-    public ArticleShowDto() {
-        this.id = 0L;
-        this.title = "";
-        this.category = "";
-        this.page = 1;
-        this.watchNum = 1;
-        this.user = null;
 
-    }
 }
 
