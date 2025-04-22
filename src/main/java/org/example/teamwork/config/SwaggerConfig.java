@@ -1,4 +1,4 @@
-package org.example.teamwork.Util.config;
+package org.example.teamwork.config;
 
 
 import io.swagger.v3.oas.models.ExternalDocumentation;

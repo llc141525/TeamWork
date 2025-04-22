@@ -1,4 +1,4 @@
-package org.example.teamwork.Model;
+package org.example.teamwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -7,6 +7,8 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
 
+@Builder
+//@SuperBuilder
 @Getter
 @Setter
 @ToString
