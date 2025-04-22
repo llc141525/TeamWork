@@ -1,7 +1,8 @@
 package org.example.teamwork.repository;
 
-import org.example.teamwork.Model.Comment;
+import org.example.teamwork.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface CommentRepository extends JpaRepository<Comment, Long> {
+public interface CommentRepository extends JpaRepository<Comment, Long>, JpaSpecificationExecutor<Comment> {
 }

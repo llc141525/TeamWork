@@ -1,4 +1,4 @@
-package org.example.teamwork.Model;
+package org.example.teamwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -9,19 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/*
+ * 一个 article 包含 id, title, content, classes(类别), watchNum(查看数).这些属性可以直接调用
+ * 还有 comments(一对多), user(多对一). 这两个是实体类注意 comments 是列表
+ * 使用 addComment, removeComment 来维护双向关系, 避免直接操作集合
+ * */
+
+@Builder
+//@SuperBuilder
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-
 public class Article {
-    /*
-     * 一个 article 包含 id, title, content, classes(类别), watchNum(查看数).这些属性可以直接调用
-     * 还有 comments(一对多), user(多对一). 这两个是实体类注意 comments 是列表
-     * 使用 addComment, removeComment 来维护双向关系, 避免直接操作集合
-     * */
 
     // 主键
     @Id

@@ -1,4 +1,4 @@
-package org.example.teamwork.Model;
+package org.example.teamwork.model;
 
 
 import jakarta.persistence.*;
@@ -9,15 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Builder
+//@SuperBuilder
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "User.findById", query = "select u from User u where u.id = :id")
-})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +29,12 @@ public class User {
     // 密码
     private String passwd;
 
+    private String avatarUrl;
+
     // 这个人的文章
     @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL, // 级联删除
+            orphanRemoval = true // 孤儿删除
     )
     @ToString.Exclude
     private List<Article> articles = new ArrayList<>();
