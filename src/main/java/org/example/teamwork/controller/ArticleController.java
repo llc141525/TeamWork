@@ -15,18 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticleController {
     private final ArticleRepository articleRepository;
     private final ArticleService articleService;
-//    private final ArticleMapper articleMapper;
-//
+
 //    @Operation(summary = "获取文章首页", description = "获取文章首页")
 //    @GetMapping("/show")
-//    public ApiResponse<List<ArticleShowDto>> getArticleDetail() {
-//        List<ArticleShowDto> articleShowDto = new ArrayList<>();
-//        articleRepository.findAll().forEach(article -> {
-//            ArticleShowDto articleDetailDto = articleMapper.toShowDto(article);
-//            BeanUtils.copyProperties(article, articleDetailDto);
-//            articleShowDto.add(articleDetailDto);
-//        });
-//        return ApiResponse.success(articleShowDto);
+//    public ApiResponse<List<ArticleShowResponse>> getArticleDetail() {
+//        articleService.getArticleDetail();
+//
 //    }
 //
 //    @Operation(summary = "根据 id 获取文章")

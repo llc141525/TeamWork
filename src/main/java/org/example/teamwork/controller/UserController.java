@@ -1,15 +1,17 @@
 package org.example.teamwork.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.teamwork.dto.request.RegisterLoginRequest;
+import org.example.teamwork.dto.response.UserResponse;
+import org.example.teamwork.model.User;
+import org.example.teamwork.repository.UserRepository;
 import org.example.teamwork.security.JwtUtil;
 import org.example.teamwork.service.UserService;
 import org.example.teamwork.utils.ApiResponse;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.teamwork.utils.CookieUtil;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
     private final JwtUtil jwtUtil;
+    private final UserRepository userRepository;
 
     @PostMapping("/register")
     public ApiResponse<String> register(@Valid @RequestBody RegisterLoginRequest request) {
@@ -25,11 +28,22 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ApiResponse<Void> login(@Valid @RequestBody RegisterLoginRequest request) {
+    public ApiResponse<UserResponse> login(@Valid @RequestBody RegisterLoginRequest request, HttpServletResponse response) {
         boolean judge = userService.login(request.username(), request.password());
-//       if(judge){
-//           jwtUtil.generateToken()
-//       }
+        User user = userRepository.findByUsername(request.username());
+        if (judge) {
+            String cookie = jwtUtil.generateToken(user.getId());
+            CookieUtil.setCookie(response, cookie);
+        }
+        return ApiResponse.success(UserResponse.builder()
+                .username(user.getUsername())
+                .avatarUrl(user.getAvatarUrl())
+                .build());
+    }
+
+    @GetMapping("/logout")
+    public ApiResponse<Void> logout(HttpServletResponse response) {
+        CookieUtil.deleteCookie(response);
         return ApiResponse.success(null);
     }
 }
