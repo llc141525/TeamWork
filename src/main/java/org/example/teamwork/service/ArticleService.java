@@ -17,6 +17,12 @@ public class ArticleService {
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
 
-    /*更新一篇文章*/
+//    public List<ArticleShowResponse> getArticleDetail(Long userId) {
+//        userRepository.findById(userId).ifPresent(user -> {
+//
+//        });
+//
+//
+//    }
 
 }
