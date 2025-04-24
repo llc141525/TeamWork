@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +26,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Article {
 
     // 主键
@@ -41,6 +45,10 @@ public class Article {
 
     //文章的观看数量
     private Integer watchNum;
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createTime;
 
     //一对多, 一篇文章对应多个评论
     @OneToMany(cascade = CascadeType.ALL,    // 设置级联删除, 删除一篇文章会一次性把所有评论删除.

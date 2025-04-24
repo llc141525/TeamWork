@@ -3,13 +3,13 @@ package org.example.teamwork.dto.response;
 import lombok.Builder;
 
 @Builder
-public record ArticleShowResponse(
+public record ArticleDetailResponse(
         Long id,
         String title,
         String content,
         String category,
         Integer watchNum,
-        Long userId,
+        String username,
         Long createTime
 ) {
 }
