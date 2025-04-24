@@ -65,4 +65,5 @@ public class JwtInterceptor implements HandlerInterceptor {
                 UserError.NO_COOKIE.getMessage()
         );
     }
+
 }
