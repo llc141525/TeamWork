@@ -13,6 +13,5 @@ declare module 'vue' {
     Navigation: typeof import('./components/Navigation.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SelectImage: typeof import('./components/SelectImage.vue')['default']
   }
 }

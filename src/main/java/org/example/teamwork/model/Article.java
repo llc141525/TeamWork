@@ -42,6 +42,8 @@ public class Article {
     //文章的观看数量
     private Integer watchNum;
 
+    private Long createTime;
+
     //一对多, 一篇文章对应多个评论
     @OneToMany(cascade = CascadeType.ALL,    // 设置级联删除, 删除一篇文章会一次性把所有评论删除.
             mappedBy = "article",
