@@ -23,9 +23,9 @@ public class JwtInterceptor implements HandlerInterceptor {
     private final PathMatcher pathMatcher = new AntPathMatcher();
     private final List<String> EXCLUDE_PATH =
             new ArrayList<>(Arrays.asList(
-                    "/auth/**",
+                    "/api/user/**",
                     "/v3/api-docs/**",
-                    "/swagger-ui/**",
+                    "/swagger-ui*",
                     "/swagger-resources/**",
                     "/webjars/**"));
 
@@ -36,7 +36,6 @@ public class JwtInterceptor implements HandlerInterceptor {
         }
 
         Cookie[] cookies = request.getCookies();
-//        String servletPath = request.getServletPath();
         String requestURI = request.getRequestURI();
         if (EXCLUDE_PATH.stream().anyMatch(pattern -> pathMatcher.match(pattern, requestURI))) {
             return true;
@@ -57,13 +56,14 @@ public class JwtInterceptor implements HandlerInterceptor {
             }
         }
         if (!res.isEmpty()) {
-            Claims cookie = res.getFirst();
-            request.setAttribute("userId", cookie.get("userId"));
-
+            Claims token = res.getFirst();
+            Long userId = token.get("userId", Long.class);
+            request.setAttribute("userId", userId);
             return true;
         } else throw new UserException(
                 UserError.NO_COOKIE.getCode(),
                 UserError.NO_COOKIE.getMessage()
         );
     }
+
 }

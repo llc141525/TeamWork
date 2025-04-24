@@ -3,7 +3,9 @@ package org.example.teamwork.utils;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseCookie;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CookieUtil {
     public static void setCookie(HttpServletResponse response, String token) {
         ResponseCookie cookie = ResponseCookie.from("jwt_token", token)
